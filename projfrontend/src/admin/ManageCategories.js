@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../auth/helper';
 import Base from '../core/Base';
-import { getCategories } from './helper/adminapicall';
+import { deleteCategory, getCategories } from './helper/adminapicall';
 
 
 const ManageCategories = () => {
@@ -25,8 +25,14 @@ const ManageCategories = () => {
         preload();
     }, []);
 
-    const deleteOneCategory = () => {
-        //
+    const deleteOneCategory = categoryId => {
+        deleteCategory(categoryId,user._id,token).then(data=>{
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                preload();
+            }
+        })
     };
 
 
@@ -50,7 +56,7 @@ const ManageCategories = () => {
                                 <div className="col-4">
                                     <Link
                                         className="btn btn-success"
-                                        to={`/admin/product/update/${category._id}`}
+                                        to={`/admin/category/update/${category._id}`}
                                     >
                                         <span className="">Update</span>
                                     </Link>

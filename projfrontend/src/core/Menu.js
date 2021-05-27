@@ -3,7 +3,6 @@ import { Link,withRouter} from 'react-router-dom';
 import { isAuthenticated,signout } from '../auth/helper';
 
 
-
 const currentTab = (history, path) => {
     if (history.location.pathname === path) {
         return { color: '#2ecc72' }
@@ -12,8 +11,6 @@ const currentTab = (history, path) => {
     }
 };
 
-const { user: { name } } = isAuthenticated();
-//console.log(name);
 
 const Menu = ({ history }) => (
     <div>
@@ -46,7 +43,7 @@ const Menu = ({ history }) => (
             )}
             {isAuthenticated() && (
                 <li className="nav-item ml-auto">
-                    <span className="nav-link text-info">Welcome {name}</span>
+                    <span className="nav-link text-info">Welcome {isAuthenticated().user.name}</span>
                 </li>
             )}
             {isAuthenticated() && (
