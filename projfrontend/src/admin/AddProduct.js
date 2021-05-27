@@ -7,7 +7,7 @@ import { createProduct, getCategories } from './helper/adminapicall';
 
 const AddProduct = () => {
 
-    const {user,token} = isAuthenticated();
+    const { user, token } = isAuthenticated();
 
     const [values, setValues] = useState({
         name: "",
@@ -44,7 +44,7 @@ const AddProduct = () => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, categories: data,formData: new FormData() });
+                setValues({ ...values, categories: data, formData: new FormData() });
                 
             }
         });
@@ -90,6 +90,14 @@ const AddProduct = () => {
         </div>
     );
 
+    const errorMessage = () => (
+        <div className="alert alert-danger mt-3"
+            style={{ display: error ? "" : "none" }}
+        >
+            <h4>{error} occured in create Product</h4>
+        </div>
+    );
+
     const createProductForm = () => (
         <form >
             <span>Post Photo</span>
@@ -115,13 +123,13 @@ const AddProduct = () => {
                 />
             </div>
             <div className="form-group">
-                    <textarea
+                <textarea
                     onChange={handleChange("description")}
                     name="photo"
                     className="form-control"
                     placeholder="Description"
                     value={description}
-                    />
+                />
             </div>
             <div className="form-group">
                 <input
@@ -175,11 +183,12 @@ const AddProduct = () => {
             <div className="row bg-dark text-white rounded">
                 <div className="col-md-8 offset-md-2">
                     {successMessage()}
+                    {errorMessage()}
                     {createProductForm()}
                 </div>
             </div>
         </Base>
     )
-}
+};
 
 export default AddProduct;
