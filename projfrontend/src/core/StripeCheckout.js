@@ -68,7 +68,7 @@ const StripeCheckout = ({ products, setReload = f => f, reload = undefined }) =>
             <StripeCheckoutButton
                 stripeKey="pk_test_51GusGkGhjm1DvB4BbkQpMJYcYnBO1zeqv1vvCJTKRwxHC6RWquTI6fKmqkAc2d9oFL68KwBcTmXazQT6VErjOC6Y00Qd7Ybq0w"
                 token={makePayment}
-                amount={getFinalTotal() *100}
+                amount={getFinalTotal()*100}
                 name="Payment Here"
                 shippingAddress
                 billingAddress

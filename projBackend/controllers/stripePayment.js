@@ -16,8 +16,8 @@ exports.makepayment = (req, res) => {
         source: token.id
     }).then(customer => {
         stripe.charges.create({
-            amount: amount * 100,
-            currency: "usd",
+            amount: amount *100,
+            currency: "INR",
             customer: customer.id,
             receipt_email: token.email,
             description:"a test account",
