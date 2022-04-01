@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-
 const app = express();
 
 // Routes
@@ -40,7 +39,10 @@ app.use('/api', stripeRoutes);
 
 
 const port = process.env.PORT || 8000;
-
 app.listen(port, () => {
     console.log(`App listening at ${port}`)
 });
+
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static("projfrontend/build"));
+}
