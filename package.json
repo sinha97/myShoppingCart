@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node index",
+    "server": "nodemon index",
+    "projfrontend": "npm start --prefix projfrontend",
+    "dev": "concurrently \"npm run server\" \"npm run projfrontend\"",
     "heroku-postbuild": "NPM_CONFIG_PRDUCTION=false npm install --prefix projfrontend && npm run build --prefix projfrontend"
   },
   "keywords": [],
