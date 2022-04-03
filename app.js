@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const app = express();
+app.use(express.static("public"));
 
 // Routes
 const authRoutes = require('./routes/auth');
