@@ -38,11 +38,15 @@ app.use('/api', orderRoutes);
 app.use('/api', stripeRoutes);
 
 
+if (process.env.NODE_ENV == "production") {
+    app.use(express.static("projfrontend/build"));
+     app.get('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'projfrontend','build','index.html'));
+    });
+}
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`App listening at ${port}`)
 });
 
-if (process.env.NODE_ENV == "production") {
-  app.use(express.static("projfrontend/build"));
-}
